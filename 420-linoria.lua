@@ -1228,7 +1228,6 @@ do
         local Picking = false;
 
         PickOuter.InputBegan:Connect(function(Input, IsProcessed)
-			if IsProcessed then return end
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 Picking = true;
 
@@ -1282,7 +1281,8 @@ do
             end;
         end);
 
-        Library:GiveSignal(InputService.InputBegan:Connect(function(Input)
+        Library:GiveSignal(InputService.InputBegan:Connect(function(Input, IsProcessed)
+			if IsProcessed then return end
             if (not Picking) then
                 if KeyPicker.Mode == 'Toggle' then
                     local Key = KeyPicker.Value;
