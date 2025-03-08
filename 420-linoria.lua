@@ -1227,7 +1227,8 @@ do
 
         local Picking = false;
 
-        PickOuter.InputBegan:Connect(function(Input)
+        PickOuter.InputBegan:Connect(function(Input, IsProcessed)
+			if IsProcessed then return end
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 Picking = true;
 
